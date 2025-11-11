@@ -1,0 +1,68 @@
+---
+layout: "layout.njk"
+---
+
+<article class="prose lg:prose-xl mx-auto p-4">
+  
+  {# Judul dan Tanggal dari Front Matter #}
+  <h1>{{ title }}</h1>
+  <p class_alias="text-gray-500">Tanggal: {{ date | readableDate }}</p> {# Asumsi Anda punya filter 'readableDate' #}
+
+  {# --- BAGIAN RINGKASAN PROYEK --- #}
+  <section class="mb-8 p-4 bg-gray-100 rounded-lg">
+    <h2 class="!mt-0">Ringkasan Proyek</h2>
+    
+    {# Poin 1: Ringkasan #}
+    <p class="lead">{{ ringkasan }}</p>
+    
+    <ul>
+      <li><strong>Peran:</strong> {{ peran }}</li>
+      <li><strong>Status:</strong> {{ status }}</li>
+    </ul>
+
+    {# Poin 7: Link #}
+    <div class="flex gap-4 mt-4">
+      {% if url_demo %}
+        <a href="{{ url_demo }}" class="button">Lihat Demo Live</a>
+      {% endif %}
+      {% if url_repo %}
+        <a href="{{ url_repo }}" class="button-secondary">Lihat Kode</a>
+      {% endif %}
+    </div>
+  </section>
+
+  {# Poin 4: Tech Stack #}
+  <section class="mb-8">
+    <h2>Tech Stack</h2>
+    <div class="flex flex-wrap gap-2">
+      {% for tech in tech_stack %}
+        <span class="badge">{{ tech }}</span>
+      {% endfor %}
+    </div>
+  </section>
+
+  {# Poin 2: Masalah & Tujuan #}
+  <section class="mb-8">
+    <h2>Masalah & Tujuan</h2>
+    {{ masalah_dan_tujuan | safe }}
+  </section>
+
+  {# Poin 9: Tantangan #}
+  <section class="mb-8">
+    <h2>Tantangan Utama</h2>
+    {{ tantangan | safe }}
+  </section>
+
+  {# Poin 10: Pelajaran #}
+  <section class="mb-8">
+    <h2>Pelajaran yang Dipetik</h2>
+    {{ pelajaran_dipetik | safe }}
+  </section>
+
+  {# --- ISI UTAMA --- #}
+  {# Ini adalah 'body' dari file .md, tempat Poin 3, 5, 6, 8, 11 ditulis #}
+  <hr>
+  
+  {{ content | safe }} {# <-- 'content' adalah 'body' dari Decap #}
+
+</article>

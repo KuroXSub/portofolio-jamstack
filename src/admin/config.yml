@@ -1,0 +1,105 @@
+# src/admin/config.yml
+
+# Backend: Hubungkan ke GitHub. Ganti 'user/repo' dengan nama repo Anda nanti
+backend:
+  name: github
+  repo: "KuroXSub/portofolio-jamstack" # CONTOH: kuroxsub/portofolio-jamstack
+  branch: main # Branch utama Anda
+
+# Konfigurasi Media: Simpan gambar di folder statis
+media_folder: "src/static/uploads"
+public_folder: "/static/uploads"
+
+collections:
+  # Koleksi 1: Untuk Info Umum (file tunggal)
+  - name: "info"
+    label: "Info Umum"
+    files:
+      - file: "src/_data/info.json"
+        label: "Info Umum"
+        name: "info"
+        fields:
+          - { label: "Nama", name: "name", widget: "string" }
+          - { label: "Bio Title", name: "bio_title", widget: "string" }
+          - { label: "Bio Description", name: "bio_description", widget: "markdown" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "GitHub URL", name: "github_url", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedin_url", widget: "string" }
+
+  # Koleksi 2: Untuk Portofolio (banyak file)
+  - name: "portofolio"
+    label: "Portofolio"
+    label_singular: "Proyek Portofolio"
+    folder: "src/posts"
+    create: true
+    filter: { field: "category", value: "portofolio" }
+    fields:
+      # --- Metadata Inti (Wajib ada) ---
+      - { label: "Judul Proyek", name: "title", widget: "string" }
+      - { label: "Tanggal Pengerjaan", name: "date", widget: "datetime" }
+      - { label: "Gambar Utama (Cover)", name: "image_filename", widget: "image" }
+      - { label: "Kategori", name: "category", widget: "hidden", default: "portofolio" }
+      - { label: "Aktif (Tampilkan di web)", name: "is_active", widget: "boolean", default: true }
+      - { label: "Sematkan (Tampilkan di beranda)", name: "is_pinned", widget: "boolean", default: false }
+      - { label: "Urutan (Angka kecil tampil dulu)", name: "order", widget: "number", default: 99 }
+      
+      # --- Poin 1: Ringkasan Proyek ---
+      - label: "Ringkasan (Elevator Pitch)"
+        name: "ringkasan"
+        widget: "text"
+        hint: "Satu paragraf singkat tujuan utama dan nilai proyek ini."
+      - { label: "Peran Anda", name: "peran", widget: "string", hint: "Contoh: Full-Stack Developer, UI/UX Designer" }
+      - label: "Status Proyek"
+        name: "status"
+        widget: "select"
+        options: ["Demo Live", "Private", "Prototype", "Open-Source"]
+        default: "Demo Live"
+
+      # --- Poin 4 & 7: Tech Stack & Link ---
+      - label: "Tech Stack"
+        name: "tech_stack"
+        widget: "list"
+        summary: "{{fields.tech}}"
+        field: { label: "Teknologi", name: "tech", widget: "string"}
+        hint: "Tekan 'Add Teknologi' untuk tiap item (mis. Eleventy, Tailwind, R2)."
+      - { label: "URL Demo Live", name: "url_demo", widget: "string", required: false }
+      - { label: "URL Repository", name: "url_repo", widget: "string", required: false }
+
+      # --- Poin 2, 9, 10: Inti Cerita Proyek ---
+      - label: "Masalah & Tujuan"
+        name: "masalah_dan_tujuan"
+        widget: "markdown"
+        hint: "(Poin 2) Jelaskan masalah bisnis/teknis dan tujuan fungsional utama."
+      - label: "Tantangan Utama"
+        name: "tantangan"
+        widget: "markdown"
+        hint: "(Poin 9) Masalah teknis paling menantang dan bagaimana Anda menyelesaikannya."
+      - label: "Pelajaran yang Dipetik"
+        name: "pelajaran_dipetik"
+        widget: "markdown"
+        hint: "(Poin 10) Best practice atau hal yang akan Anda lakukan secara berbeda."
+
+      # --- Poin 3, 5, 6, 8, 11: Isi Artikel Lengkap ---
+      - label: "Isi Artikel Lengkap (Body)"
+        name: "body"
+        widget: "markdown"
+        hint: "Di sinilah Anda menulis sisanya: Fitur Utama, Desain Teknis, Keamanan, Hasil, dll. Gunakan format Markdown."
+
+  # ===============================================
+  # KOLEKSI BLOG (Disederhanakan)
+  # ===============================================
+  - name: "blog"
+    label: "Blog"
+    label_singular: "Post Blog"
+    folder: "src/posts"
+    create: true
+    filter: { field: "category", value: "blog" }
+    fields:
+      - { label: "Judul Post", name: "title", widget: "string" }
+      - { label: "Tanggal Publikasi", name: "date", widget: "datetime" }
+      - { label: "Gambar Utama (Cover)", name: "image_filename", widget: "image" }
+      - { label: "Kategori", name: "category", widget: "hidden", default: "blog" }
+      - { label: "Aktif (Tampilkan di web)", name: "is_active", widget: "boolean", default: true }
+      - { label: "Sematkan (Tampilkan di beranda)", name: "is_pinned", widget: "boolean", default: false }
+      - { label: "Urutan", name: "order", widget: "number", default: 99 }
+      - { label: "Isi Artikel (Body)", name: "body", widget: "markdown" }

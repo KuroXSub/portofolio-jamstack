@@ -1,0 +1,14 @@
+{% macro post_card(post, r2_url) %}
+<a href="/posts/{{ post.slug }}/" data-animate data-delay="100" class="block w-full max-w-sm bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group h-full flex flex-col">
+    <div class="aspect-w-16 aspect-h-9 bg-slate-200">
+        <img src="{{ r2_url }}/{{ post.thumbnail_image }}" alt="{{ post.title }}" 
+             class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105">
+    </div>
+    <div class="p-4 md:p-5 flex-grow flex flex-col">
+        <h3 class="font-bold text-md md:text-lg text-slate-800 mb-2 truncate">{{ post.title }}</h3>
+        <p class="text-slate-500 text-sm line-clamp-3 flex-grow">
+            {{ post.content|striptags }}
+        </p>
+    </div>
+</a>
+{% endmacro %}

@@ -1,0 +1,11 @@
+{% from '_macros.njk' import post_card %}
+<section id="blog" class="py-16 overflow-hidden">
+    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-12" data-animate>Tulisan Terbaru</h2>
+    <div class="flex justify-center">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {% for post in blogs %}
+                {{ post_card(post, r2_url=R2_PUBLIC_URL) }}
+            {% endfor %}
+        </div>
+    </div>
+</section>

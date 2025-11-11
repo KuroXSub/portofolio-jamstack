@@ -1,0 +1,35 @@
+<section id="hero" class="pt-32 pb-16">
+    <div class="w-full" data-animate>
+        <div class="absolute -top-20 -left-20 sm:-top-32 sm:-left-32">
+            {% include 'decorations/_shape_blob.njk' %}
+        </div>
+        <!-- <div class="absolute -top-20 -right-20 opacity-50 rotate-45">{% include 'decorations/_shape_ring.njk' %}</div> -->
+        <div class="relative">
+            <p class="text-lg md:text-xl text-slate-600 font-medium">Hai, saya</p>
+            <h1 class="text-4xl sm:text-5xl font-bold text-slate-800 leading-tight mt-1">
+                {{ info.name or "Nama Lengkap" }}
+            </h1>
+            <h2 class="text-2xl sm:text-3xl font-semibold text-teal-600 mt-2">
+                {{ info.bio_title or "Pekerjaan" }}
+            </h2>
+            <p class="text-base md:text-lg text-slate-600 mt-6 max-w-2xl" data-animate data-delay="100">
+                {{ info.bio_description or "Deskripsi singkat..." }}
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-4" data-animate data-delay="200">
+                <a href="/static/files/CV_Nama_Anda.pdf" download class="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors">
+                    Download CV
+                </a>
+                <a href="#portfolio" class="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors">
+                    Lihat Proyek
+                </a>
+            </div>
+            
+            <div class="mt-10 flex items-center space-x-6" data-animate data-delay="300">
+                {% if info.github_url %}<a href="{{ info.github_url }}" target="_blank" class="text-slate-400 hover:text-gray-800">{% include 'icons/github_icon.njk' %}</a>{% endif %}
+                {% if info.linkedin_url %}<a href="{{ info.linkedin_url }}" target="_blank" class="text-slate-400 hover:text-gray-800">{% include 'icons/linkedin_icon.njk' %}</a>{% endif %}
+                {% if info.email %}<a href="mailto:{{ info.email }}" class="text-slate-400 hover:text-gray-800">{% include 'icons/email_icon.njk' %}</a>{% endif %}
+            </div>
+        </div>
+    </div>
+</section>

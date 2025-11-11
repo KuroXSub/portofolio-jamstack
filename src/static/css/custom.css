@@ -1,0 +1,16 @@
+body {
+    font-family: 'Inter', sans-serif;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* Kelas .animate-in dari JavaScript akan memicu animasi 
+  yang sudah kita definisikan di tailwind.config.js
+*/
+.animate-in {
+    animation-fill-mode: forwards; /* Mempertahankan state akhir animasi */
+}

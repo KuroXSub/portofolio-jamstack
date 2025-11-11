@@ -1,0 +1,33 @@
+<!DOCTYPE njk>
+<njk lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ description or 'Portofolio Qurrota Full Stack Web Developer dengan ketertarikan pada Cyber Security.' }}">
+    <title>{{ title }} - Portofolio Qurrota</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/static/css/style.css' | url }}">
+    <link rel="stylesheet" href="{{ '/static/css/custom.css' | url }}">
+</head>
+<body class="bg-gradient-to-b from-white to-slate-100 text-slate-800">
+
+    {% include '_header.njk' %}
+
+    {{ content | safe }}
+
+    {% include '_footer.njk' %}
+
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 hidden">
+        <button id="lightbox-close" class="absolute top-4 right-4 text-white text-3xl font-bold">&times;</button>
+        <img id="lightbox-image" src="" alt="Gambar Diperbesar" class="max-w-full max-h-full">
+    </div>
+
+    <button id="scroll-to-top" class="fixed bottom-5 right-5 bg-teal-500 hover:bg-teal-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 opacity-0 z-40">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script src="{{ '/static/js/main.js' | url }}"></script>
+</body>
+</njk>

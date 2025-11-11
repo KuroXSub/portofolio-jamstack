@@ -1,0 +1,25 @@
+<section id="about" class="py-16 relative overflow-hidden">
+    <div class="absolute -top-24 -left-44 opacity-50">{% include 'decorations/_shape_ring.njk' %}</div>
+    <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center relative z-10">
+            
+            <div class="md:col-span-1 flex justify-center" data-animate>
+                {% if info.profile_picture %}
+                    <img src="{{ R2_PUBLIC_URL }}/{{ info.profile_picture }}" alt="Foto Profil" class="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-lg">
+                {% endif %}
+            </div>
+
+            <div class="md:col-span-2 text-left" data-animate data-delay="100">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-4">Tentang Saya</h2>
+                <div class="text-slate-600 space-y-4 prose max-w-none text-sm md:text-base">
+                    {{ info.long_bio|safe }}
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-200 space-y-3">
+                    {% if info.email %}<a href="mailto:{{ info.email }}" class="flex items-center text-slate-600 hover:text-teal-600 group"><div class="mr-3 text-teal-600">{% include 'icons/email_icon.njk' %}</div> <span class="group-hover:underline">{{ info.email }}</span></a>{% endif %}
+                    {% if info.github_url %}<a href="{{ info.github_url }}" target="_blank" class="flex items-center text-slate-600 hover:text-teal-600 group"><div class="mr-3 text-teal-600">{% include 'icons/github_icon.njk' %}</div> <span class="group-hover:underline">GitHub</span></a>{% endif %}
+                    {% if info.linkedin_url %}<a href="{{ info.linkedin_url }}" target="_blank" class="flex items-center text-slate-600 hover:text-teal-600 group"><div class="mr-3 text-teal-600">{% include 'icons/linkedin_icon.njk' %}</div> <span class="group-hover:underline">LinkedIn</span></a>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

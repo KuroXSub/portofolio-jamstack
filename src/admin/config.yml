@@ -4,9 +4,10 @@
 backend:
   name: github
   repo: "KuroXSub/portofolio-jamstack" # CONTOH: kuroxsub/portofolio-jamstack
-  branch: main # Branch utama Anda
+  branch: main
   base_url: https://portofolio-jamstack.pages.dev
   auth_endpoint: /api/auth
+  app_id: Ov23liJRKy59mQC54lPY
 
 # Konfigurasi Media: Simpan gambar di folder statis
 media_folder: "src/static/uploads"

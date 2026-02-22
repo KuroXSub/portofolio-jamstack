@@ -1,20 +1,24 @@
+{# src/_includes/_portfolio_section.njk #}
+
+{# 1. Impor makro 'post_card' dari file _macros.njk #}
 {% from '_macros.njk' import post_card %}
+
 <section id="portfolio" class="py-16 overflow-hidden">
-    <div class="relative z-10"> <h2 class="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-12 flex items-center justify-center" data-animate>
+    <div class="relative z-10"> 
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-12 flex items-center justify-center" data-animate>
             <span class="mx-4">Proyek Pilihan</span>
             <svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
             </svg>
         </h2>
-        <div class="flex justify-center">
-             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="flex justify-center px-4">
+             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl">
+                
+                {# 2. Ganti loop lama Anda dengan ini #}
                 {% for post in collections.portofolio %}
-                    <a href="{{ post.url | url }}">
-                        {# Ganti post.image_filename menjadi post.data.image_filename #}
-                        <img src="{{ ('/static/uploads/' + post.data.image_filename) | url }}"> 
-                        <h3>{{ post.data.title }}</h3>
-                    </a>
+                    {{ post_card(post) }} {# Panggil makro untuk setiap post #}
                 {% endfor %}
+
             </div>
         </div>
     </div>

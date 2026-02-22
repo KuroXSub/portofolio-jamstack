@@ -1,4 +1,7 @@
 // .eleventy.js
+
+const { DateTime } = require("luxon");
+
 module.exports = function(eleventyConfig) {
 
   // 1. "Passthrough Copy" (Menyalin folder utuh ke hasil build)
@@ -29,16 +32,30 @@ module.exports = function(eleventyConfig) {
       });
   });
 
-  // 2. Beri tahu Eleventy di mana harus mencari file
+// 2. TAMBAHKAN KODE FILTER INI:
+  // Kita akan membuat filter baru bernama "postDate"
+  eleventyConfig.addFilter("postDate", (dateObj) => {
+    // 'dateObj' adalah objek tanggal dari front matter
+    // .toFormat("LLL dd, yyyy") akan menghasilkan format seperti: "Nov 13, 2025"
+    return DateTime.fromJSDate(dateObj).toFormat("LLL dd, yyyy");
+  });
+
+  // (Opsional, tapi sangat berguna) Filter untuk format yang lebih mudah dibaca
+  eleventyConfig.addFilter("readableDate", (dateObj) => {
+    // Menghasilkan format seperti: "13 November 2025"
+    return DateTime.fromJSDate(dateObj).toFormat("dd LLLL yyyy", { locale: 'id' });
+  });
+
+
+  // 3. Pastikan Anda mengembalikan konfigurasi Anda di akhir
   return {
     dir: {
-      input: "src",       // Folder sumber
-      includes: "_includes",// Folder untuk layout/partial
-      data: "_data",      // Folder untuk data JSON
-      output: "_site"     // Folder hasil build (ini yang akan di-deploy)
+      input: "src",
+      includes: "_includes",
+      data: "_data",
+      output: "_site"
     },
-    // Izinkan HTML/Nunjucks di semua file template
-    htmlTemplateEngine: "njk",
-    markdownTemplateEngine: "njk"
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: "njk"
   };
 };

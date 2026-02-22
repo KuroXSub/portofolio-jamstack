@@ -1,16 +1,9 @@
 # src/admin/config.yml
 
-# Backend: Hubungkan ke GitHub. Ganti 'user/repo' dengan nama repo Anda nanti
 backend:
   name: github
   repo: "KuroXSub/portofolio-jamstack"
   branch: main
-  # base_url: https://portofolio-jamstack.pages.dev
-  # auth_endpoint: /api/auth
-  # auth_type: custom
-  auth_type: implicit
-  app_id: Ov23liJRKy59mQC54lPY
-
 
 # Konfigurasi Media: Simpan gambar di folder statis
 media_folder: "src/static/uploads"
